@@ -8,7 +8,7 @@
 	<groupId>com.atomicleopard</groupId>
 	<artifactId>thundr-contrib-docraptor</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<organization>
 		<name>Atomic Leopard</name>
@@ -25,7 +25,7 @@
 		<connection>scm:git:https://github.com/atomicleopard/thundr-contrib-docraptor</connection>
 		<developerConnection>scm:git:https://github.com/atomicleopard/thundr-contrib-docraptor</developerConnection>
 		<url>https://github.com/atomicleopard/thundr-contrib-docraptor</url>
-	  <tag>thundr-contrib-docraptor-1.0.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<properties>
 	 	<gpg.keyname>26463462</gpg.keyname>
