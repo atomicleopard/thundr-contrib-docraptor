@@ -23,20 +23,24 @@ import com.threewks.thundr.http.service.HttpResponse;
 import com.threewks.thundr.http.service.HttpService;
 import com.threewks.thundr.json.GsonSupport;
 import com.threewks.thundr.logger.Logger;
-import com.threewks.thundr.view.BasicViewRenderer;
+import com.threewks.thundr.request.InMemoryRequest;
+import com.threewks.thundr.request.InMemoryResponse;
+import com.threewks.thundr.transformer.TransformerManager;
 import com.threewks.thundr.view.ViewResolverRegistry;
 
 public class DocraptorService implements Docraptor {
 	protected String docRaptorUrl = "http://docraptor.com/docs";
 	protected HttpService httpService;
 	protected ViewResolverRegistry viewResolverRegistry;
+	protected TransformerManager transformerManager;
 	protected Gson gson = GsonSupport.createBasicGsonBuilder().create();
 	protected String apiKey;
 
-	public DocraptorService(HttpService httpService, ViewResolverRegistry viewResolverRegistry, String docraptorApiKey) {
+	public DocraptorService(HttpService httpService, ViewResolverRegistry viewResolverRegistry, TransformerManager transformerManager, String docraptorApiKey) {
 		this.httpService = httpService;
 		this.apiKey = docraptorApiKey;
 		this.viewResolverRegistry = viewResolverRegistry;
+		this.transformerManager = transformerManager;
 	}
 
 	@Override
@@ -66,9 +70,10 @@ public class DocraptorService implements Docraptor {
 
 	protected DocraptorRequest renderView(DocraptorRequest request) {
 		try {
-			BasicViewRenderer renderer = new BasicViewRenderer(viewResolverRegistry);
-			renderer.render(request.contentView);
-			String output = renderer.getOutputAsString();
+			InMemoryResponse thundrResponse = new InMemoryResponse(transformerManager);
+			InMemoryRequest thundrRequest = new InMemoryRequest();
+			viewResolverRegistry.resolve(thundrRequest, thundrResponse, request.contentView);
+			String output = thundrResponse.getBodyAsString();
 			return request.withDocumentContent(output);
 		} catch (RuntimeException e) {
 			throw new DocraptorException(e, "Failed to render content for docraptor request: %s", e.getMessage());

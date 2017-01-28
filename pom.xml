@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.threewks.thundr</groupId>
-		<artifactId>thundr-parent</artifactId>
-		<version>4</version>
+		<artifactId>thundr-module</artifactId>
+		<version>3.0.0</version>
 	</parent>
 	<groupId>com.atomicleopard</groupId>
 	<artifactId>thundr-contrib-docraptor</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 
 	<organization>
 		<name>Atomic Leopard</name>
@@ -22,14 +22,14 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:https://github.com/atomicleopard/thundr-contrib-docraptor</connection>
-		<developerConnection>scm:git:https://github.com/atomicleopard/thundr-contrib-docraptor</developerConnection>
-		<url>https://github.com/atomicleopard/thundr-contrib-docraptor</url>
+		<connection>scm:git:https://github.com/atomicleopard/${artifactId}</connection>
+		<developerConnection>scm:git:https://github.com/atomicleopard/${artifactId}</developerConnection>
+		<url>https://github.com/atomicleopard/${artifactId}</url>
 	  <tag>HEAD</tag>
   </scm>
 	<properties>
 	 	<gpg.keyname>26463462</gpg.keyname>
-		<thundr-version>2.0.0</thundr-version>
+		<thundr-version>3.0.0</thundr-version>
 	</properties>
 	
 	<dependencies>
@@ -40,20 +40,7 @@
 			<version>${thundr-version}</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<!-- Servlet dependencies - only required for modules interacting with request objects -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-		</plugins>
-	</build>
 
 	<modelVersion>4.0.0</modelVersion>
 </project>

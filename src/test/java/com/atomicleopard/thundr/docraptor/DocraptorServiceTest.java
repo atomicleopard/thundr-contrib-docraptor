@@ -30,6 +30,7 @@ import org.mockito.ArgumentCaptor;
 import com.atomicleopard.thundr.docraptor.DocraptorService.RequestWrapper;
 import com.threewks.thundr.http.service.HttpResponse;
 import com.threewks.thundr.http.service.test.MockHttpService;
+import com.threewks.thundr.transformer.TransformerManager;
 import com.threewks.thundr.view.ViewResolverRegistry;
 import com.threewks.thundr.view.json.JsonView;
 import com.threewks.thundr.view.string.StringView;
@@ -48,7 +49,7 @@ public class DocraptorServiceTest {
 	@Before
 	public void before() {
 		viewResolverRegistry.addResolver(StringView.class, new StringViewResolver());
-		docraptorService = new DocraptorService(httpService, viewResolverRegistry, docraptorApiKey);
+		docraptorService = new DocraptorService(httpService, viewResolverRegistry, TransformerManager.createWithDefaults(), docraptorApiKey);
 	}
 
 	@Test
